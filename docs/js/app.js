@@ -239,9 +239,13 @@ async function boot() {
   }
 
   try {
-    const res = await fetch('content/modules.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-    APP_DATA = await res.json();
+    if (window.__MODULES__ && typeof window.__MODULES__ === 'object') {
+      APP_DATA = window.__MODULES__;
+    } else {
+      const res = await fetch('content/modules.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      APP_DATA = await res.json();
+    }
     render(APP_DATA);
     if (openModule) toggleModule(openModule);
   } catch (error) {

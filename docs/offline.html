@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security 101 — Study Edition · QALAM</title>
+<meta name="description" content="Microsoft's Cybersecurity for Beginners, digested and free: eight modules, thirty lessons, mastery tracking. Knowledge shared is knowledge multiplied.">
+<meta name="theme-color" content="#0B0F0E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QALAM — القلم">
+<meta property="og:title" content="Security 101 — Study Edition">
+<meta property="og:description" content="Microsoft's Cybersecurity for Beginners, recovered by QALAM: digested, tracked, free forever.">
+<meta property="og:url" content="https://matx104.github.io/Security-101/">
+<meta property="og:image" content="https://matx104.github.io/Security-101/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security 101 — Study Edition">
+<meta name="twitter:description" content="Microsoft's Cybersecurity for Beginners, recovered by QALAM — free forever.">
+<meta name="twitter:image" content="https://matx104.github.io/Security-101/img/og.png">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<style>
+/* ============================================================
+   Security 101 — Study Edition · a QALAM petal
+   Court palette: obsidian · dark emerald · gold. Vanilla CSS.
+   ============================================================ */
+
+:root {
+  --obsidian: #0B0F0E;
+  --panel: #111816;
+  --panel-raised: #16201D;
+  --emerald-deep: #14532D;
+  --emerald: #1B4332;
+  --emerald-bright: #2D6A4F;
+  --gold: #C9A227;
+  --gold-soft: #E4C25C;
+  --text: #E8F0EC;
+  --muted: #9CB0A8;
+  --line: rgba(45, 106, 79, 0.35);
+  --line-soft: rgba(45, 106, 79, 0.18);
+  --radius: 14px;
+  --pill: 999px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(120% 70% at 50% -20%, rgba(27, 67, 50, 0.5), transparent 70%),
+    var(--obsidian);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell { width: 100%; max-width: 980px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+header.hero, main, footer.foot { padding-inline: clamp(1rem, 4vw, 2rem); }
+header.hero, main { max-width: 980px; margin-inline: auto; }
+
+a { color: var(--gold-soft); }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- hero --------------------------------------------------------- */
+
+.hero {
+  padding-block: clamp(2.5rem, 7vw, 4rem) 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.hero__eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__title {
+  margin: 0.6rem 0 0;
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  letter-spacing: 0.04em;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero__sub { margin: 0.7rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.hero__sub em { color: var(--text); font-style: normal; font-weight: 600; }
+
+.progress { margin: 1.8rem auto 0; max-width: 460px; text-align: left; }
+.progress__label { margin: 0 0 0.45rem; font-size: 0.88rem; color: var(--muted); }
+.progress__label strong { color: var(--gold-soft); font-variant-numeric: tabular-nums; }
+.progress__bar {
+  height: 10px;
+  border-radius: var(--pill);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--pill);
+  background: linear-gradient(90deg, var(--emerald-bright), var(--gold));
+  transition: width 0.5s cubic-bezier(0.25, 0.8, 0.35, 1);
+}
+
+.hero__meta {
+  margin: 1.4rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+}
+.hero__meta a { color: var(--muted); text-decoration: none; }
+.hero__meta a:hover { color: var(--gold-soft); }
+
+/* ---------- creed + modules ---------------------------------------------- */
+
+.creed {
+  margin: 1.6rem 0 2rem;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: linear-gradient(90deg, rgba(20, 83, 45, 0.25), transparent 75%);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.creed em { color: var(--text); font-style: normal; }
+
+.modules { display: flex; flex-direction: column; gap: 1rem; }
+
+.mod__h { margin: 0; }
+.mod__head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.95rem 1.15rem;
+  background: linear-gradient(160deg, var(--panel-raised), var(--panel) 60%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.mod__head:hover { border-color: var(--emerald-bright); }
+.mod--open .mod__head {
+  border-color: var(--gold);
+  box-shadow: 0 0 26px -10px rgba(201, 162, 39, 0.45);
+}
+.mod__num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: rgba(201, 162, 39, 0.1);
+  border: 1px solid var(--line);
+  border-radius: var(--pill);
+  padding: 0.18rem 0.6rem;
+}
+.mod__title { flex: 1; font-size: 1.02rem; }
+.mod__done { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.mod__done b { color: var(--gold-soft); font-weight: 600; }
+.mod__chev { color: var(--gold); transition: transform 0.35s ease; }
+.mod--open .mod__chev { transform: rotate(180deg); }
+
+.mod__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.8, 0.35, 1), visibility 0s 0.5s;
+}
+.mod--open .mod__body {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.8, 0.35, 1);
+}
+.mod__scroller { overflow: hidden; min-height: 0; }
+.mod__blurb { margin: 1rem 0.2rem 0.4rem; color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- lessons -------------------------------------------------------- */
+
+.lesson {
+  margin-top: 0.7rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color 0.18s ease;
+}
+.lesson:hover { border-color: var(--emerald-bright); }
+.lesson--done { border-color: rgba(201, 162, 39, 0.45); }
+.lesson--quiz { background: linear-gradient(160deg, rgba(20, 83, 45, 0.35), var(--panel)); }
+
+.lesson__row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.lesson__check {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--emerald-bright);
+  background: var(--obsidian);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.lesson--done .lesson__check {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.18);
+  color: var(--gold-soft);
+}
+.lesson__id {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  flex: none;
+  width: 2.4rem;
+}
+.lesson__name { flex: 1; font-weight: 600; line-height: 1.35; }
+.lesson__mins {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lesson__chev { color: var(--muted); font-size: 0.8rem; transition: transform 0.3s ease; }
+.lesson--open .lesson__chev { transform: rotate(90deg); color: var(--gold); }
+
+.lesson__detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.4s ease, visibility 0s 0.4s;
+}
+.lesson--open .lesson__detail {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.4s ease;
+}
+.lesson__inner { overflow: hidden; min-height: 0; }
+.lesson__pad { padding: 0 1rem 1rem 5rem; }
+.lesson__objective { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.92rem; }
+.lesson__objective::before {
+  content: "Objective — ";
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.keys { list-style: none; margin: 0 0 0.8rem; padding: 0; display: grid; gap: 0.45rem; }
+.keys li {
+  position: relative;
+  padding: 0.5rem 0.75rem 0.5rem 1.9rem;
+  background: var(--panel-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.keys li::before { content: "✒"; position: absolute; left: 0.7rem; color: var(--gold); }
+.lesson__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--gold);
+  border-radius: var(--pill);
+  background: rgba(201, 162, 39, 0.08);
+  color: var(--gold-soft);
+  text-decoration: none;
+  font-size: 0.84rem;
+  transition: background 0.15s ease;
+}
+.lesson__read:hover { background: rgba(201, 162, 39, 0.16); }
+
+.notice {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--muted);
+}
+
+/* ---------- after + footer -------------------------------------------------- */
+
+.after {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: radial-gradient(120% 140% at 0% 0%, rgba(20, 83, 45, 0.4), transparent 60%), var(--panel);
+}
+.after h2 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.after p { margin: 0; color: var(--muted); }
+
+.foot {
+  margin-top: 3rem;
+  padding-block: 2.25rem 2.75rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.foot__motto { margin: 0; }
+.foot__motto strong { color: var(--gold); letter-spacing: 0.04em; }
+.foot__sub { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+.foot__links { margin: 1rem 0 0; }
+.reset {
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--pill);
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.reset:hover { color: var(--gold-soft); border-color: var(--gold); }
+
+@media (max-width: 560px) {
+  .lesson__pad { padding-left: 1rem; }
+  .lesson__mins { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* ---------- print: the study sheet ------------------------------------------- */
+
+@media print {
+  body { background: #fff; color: #111; }
+  .hero { border: 0; }
+  .hero__title { color: #6b5410; -webkit-text-fill-color: #6b5410; background: none; }
+  .hero__sub, .creed, .hero__meta, .foot__links, .lesson__chev, .lesson__read { color: #333; }
+  .mod__head { background: #fff; border-color: #999; cursor: default; }
+  .mod__body, .lesson__detail { grid-template-rows: 1fr !important; visibility: visible !important; }
+  .mod__scroller, .lesson__inner { overflow: visible; }
+  .lesson, .keys li { background: #fff; border-color: #bbb; }
+  .keys li::before { color: #000; }
+  .lesson__check { border-color: #000; color: transparent; }
+  .lesson--done .lesson__check { color: #000; }
+  .lesson, .keys li { break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+<p style="text-align:center;margin:0;padding:.6rem 1rem;border-bottom:1px solid rgba(45,106,79,.35);font:600 .78rem/1.4 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#9CB0A8;">Offline edition · saved from the living library · the online copy always knows more</p>
+
+<header class="hero">
+  <p class="hero__eyebrow">QALAM presents · a digested study edition</p>
+  <h1 class="hero__title">Security 101</h1>
+  <p class="hero__sub">Microsoft's <em>Cybersecurity for Beginners</em> — recovered, compressed, free.</p>
+
+  <div class="progress" id="progress">
+    <p class="progress__label"><strong id="progress-pct">0%</strong> inscribed · <span id="progress-count">0 of 32 lessons</span></p>
+    <div class="progress__bar" role="progressbar" aria-labelledby="progress-pct" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+      <div class="progress__fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <nav class="hero__meta" aria-label="About this edition">
+    <a href="https://github.com/microsoft/Security-101" target="_blank" rel="noopener noreferrer">🏛️ original by Microsoft (MIT)</a>
+    <a href="https://github.com/matx104/Security-101" target="_blank" rel="noopener noreferrer">🍴 this fork</a>
+    <a href="https://matx104.github.io/QALAM/" target="_blank" rel="noopener noreferrer">🖊️ the QALAM tree</a>
+  </nav>
+</header>
+
+<main>
+  <p class="creed">A scroll recovered from the library: the original curriculum belongs to Microsoft and stays
+  linked lesson-by-lesson; the digests and keys below are QALAM's study layer — what to carry into the room.
+  Your progress is stored in <em>your</em> browser, nowhere else.</p>
+
+  <div id="modules" class="modules"></div>
+  <p class="notice" id="notice" hidden></p>
+
+  <section class="after">
+    <h2>After the course</h2>
+    <p>
+      Microsoft's own next steps: the
+      <a href="https://learn.microsoft.com/training/paths/describe-concepts-of-security-compliance-identity/" target="_blank" rel="noopener noreferrer">Security, Compliance &amp; Identity Fundamentals</a>
+      path on Microsoft Learn, and eventually
+      <a href="https://learn.microsoft.com/credentials/certifications/exams/sc-900/" target="_blank" rel="noopener noreferrer">Exam SC-900</a>.
+    </p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot__motto"><strong>Security 101 — Study Edition</strong> · a petal of <a href="https://matx104.github.io/QALAM/" target="_blank" rel="noopener noreferrer">QALAM</a></p>
+  <p class="foot__sub">Curriculum © Microsoft · MIT License · digested with credit, shared free.<br>
+  Knowledge shared is knowledge multiplied.</p>
+  <p class="foot__links"><a class="reset" href="offline.html" style="text-decoration:none;display:inline-block;">⬇ Save this petal — offline copy</a> &nbsp; <button type="button" class="reset" id="reset">Reset my progress</button></p>
+</footer>
+
+<script>window.__MODULES__ = {"_comment": "The Security 101 study edition — Microsoft's 'Cybersecurity for Beginners' (Security-101) digested for study. Original curriculum (c) Microsoft, MIT License, github.com/microsoft/Security-101. Keys are QALAM-authored study points: the compressed layer, the mnemonics, the things worth carrying into the exam room. Lesson links point into the QALAM fork.", "_updated": "2026-09-14", "modules": [{"id": "m1", "num": 1, "title": "Basic security concepts", "blurb": "The vocabulary everything else is written in: the triad, the threats, the risk, the paperwork, and the two models that re-drew the map.", "lessons": [{"id": "1.1", "title": "The CIA triad and other key concepts", "objective": "Confidentiality, availability and integrity — plus authenticity, nonrepudiation and privacy.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/1.1%20The%20CIA%20triad%20and%20other%20key%20concepts.md", "keys": ["Confidentiality — only authorized eyes see it; broken by disclosure: leaks, eavesdropping, misdirected access", "Integrity — data stays correct and unaltered; broken by tampering, in transit or at rest", "Availability — the right people can use it when they need it; broken by outage, DoS, destruction", "Authenticity + nonrepudiation — claims are true and can't credibly be denied later", "Privacy spans all three — the data subject keeps control of their own information"]}, {"id": "1.2", "title": "Common cybersecurity threats", "objective": "The threat landscape facing individuals and organizations.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/1.2%20Common%20cybersecurity%20threats.md", "keys": ["Threat = potential harm · vulnerability = the weakness · exploit = the tool that joins them", "Malware families: virus (attaches), worm (self-spreads), ransomware (denies + extorts), spyware (watches)", "Social engineering beats firewalls — phishing, spear-phishing, business email compromise target people", "Insider threat needs no exploit: authorized access, unauthorized intent", "Attack surface = every point a threat can touch — people, process and technology"]}, {"id": "1.3", "title": "Understanding risk management", "objective": "Assessing risk — impact and likelihood — and implementing controls.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/1.3%20Understanding%20risk%20management.md", "keys": ["Risk = likelihood × impact — it is managed, never eliminated", "Four responses: avoid, mitigate (controls), transfer (insurance/provider), accept (documented!)", "Controls: physical / technical / administrative — and preventive / detective / corrective", "The risk register is a living document — unreviewed risk data is fiction"]}, {"id": "1.4", "title": "Security practices and documentation", "objective": "The difference between policies, procedures, standards and regulations.", "minutes": 30, "href": "https://github.com/matx104/Security-101/blob/main/1.4%20Security%20practices%20and%20documentation.md", "keys": ["Policy = intent (what and why) · standard = the mandatory specific · procedure = the step-by-step how", "Regulations and law are external and non-negotiable; policy is yours to write", "Documentation is itself a control — unwritten security is unauditable security"]}, {"id": "1.5", "title": "Zero trust", "objective": "What zero trust is, defense in depth, and the architecture it forces.", "minutes": 60, "href": "https://github.com/matx104/Security-101/blob/main/1.5%20Zero%20trust.md", "keys": ["Never trust, always verify — network location grants nothing", "Assume breach — design as if the attacker is already inside", "Defense in depth — layered controls so one failure is never the whole story", "Every request answers: who/what is asking, for which data, under which conditions"]}, {"id": "1.6", "title": "The shared responsibility model", "objective": "Who secures what in the cloud — and why the boundary moves.", "minutes": 30, "href": "https://github.com/matx104/Security-101/blob/main/1.6%20Shared%20responsibility%20model.md", "keys": ["Provider secures the fabric (the cloud); you secure what you put on it (in the cloud)", "On-prem = you own everything · SaaS = mostly provider · IaaS/PaaS = split", "The split is documented by the provider — read it before you assume it"]}, {"id": "1.7", "title": "End of module quiz", "objective": "Prove module 1 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/1.7%20End%20of%20module%20quiz.md"}]}, {"id": "m2", "num": 2, "title": "Identity & access management", "blurb": "The new perimeter: who you are, what you may do, and how little access is enough.", "lessons": [{"id": "2.1", "title": "IAM key concepts", "objective": "Least privilege, segregation of duties, and how IAM supports zero trust.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/2.1%20IAM%20key%20concepts.md", "keys": ["The four steps: identify (claim) → authenticate (prove) → authorize (allow) → account (log)", "Least privilege: minimum access, for the minimum time", "Segregation of duties — no single person completes a critical flow alone", "AAA is the spine: authentication, authorization, accounting"]}, {"id": "2.2", "title": "IAM zero trust architecture", "objective": "Identity as the new perimeter, and the threats that mitigates.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/2.2%20IAM%20zero%20trust%20architecture.md", "keys": ["Identity is the new perimeter — the network edge no longer decides access", "Strong auth: MFA everywhere; passwordless where possible", "Conditional access weighs signals per request — device, location, risk", "What it neutralizes: credential theft, lateral movement, privilege creep"]}, {"id": "2.3", "title": "IAM capabilities", "objective": "The capabilities and controls that secure identities.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/2.3%20IAM%20capabilities.md", "keys": ["One directory / identity provider is the source of truth (Entra ID and friends)", "SSO = one identity, many apps; federation extends trust across organizations", "Privileged access: just-in-time, approved, logged, revoked", "Lifecycle automation (joiner-mover-leaver) kills orphan accounts"]}, {"id": "2.4", "title": "End of module quiz", "objective": "Prove module 2 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/2.4%20End%20of%20module%20quiz.md"}]}, {"id": "m3", "num": 3, "title": "Network security", "blurb": "The roads the data travels — and the checkpoints zero trust puts on them.", "lessons": [{"id": "3.1", "title": "Networking key concepts", "objective": "IP addressing, port numbers, encryption and friends.", "minutes": 60, "href": "https://github.com/matx104/Security-101/blob/main/3.1%20Networking%20key%20concepts.md", "keys": ["IP address = where; port = which door — know the famous ones (80/443, 22, 53)", "TCP guarantees delivery, UDP prefers speed — services pick their poison", "TLS protects the conversation in transit — not the endpoints themselves", "DNS, DHCP, NAT — the plumbing, and the plumbing attackers also love"]}, {"id": "3.2", "title": "Networking zero trust architecture", "objective": "Networking's role in end-to-end zero trust.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/3.2%20Networking%20zero%20trust%20architecture.md", "keys": ["Micro-segmentation — tiny blast radii, explicitly allowed flows only", "The network sits inside identity now: per-request access, not per-subnet", "Encrypt east-west too — internal traffic is not 'safe' by location"]}, {"id": "3.3", "title": "Network security capabilities", "objective": "The tooling — firewalls, WAF, DDoS protection and the rest.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/3.3%20Network%20security%20capabilities.md", "keys": ["Firewall filters L3/L4; WAF defends L7 — the app attacks: SQLi, XSS", "DDoS protection absorbs volume — CDN edges and scrubbing centers", "IDS notices, IPS acts; modern NDR watches behaviour, not signatures", "A VPN grants access, not safety — zero trust retires the implicit tunnel"]}, {"id": "3.4", "title": "End of module quiz", "objective": "Prove module 3 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/3.4%20End%20of%20module%20quiz.md"}]}, {"id": "m4", "num": 4, "title": "Security operations", "blurb": "The defenders' shift: detect, respond, recover — and hunt instead of wait.", "lessons": [{"id": "4.1", "title": "SecOps key concepts", "objective": "Why SecOps exists, and how it differs from IT operations.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/4.1%20SecOps%20key%20concepts.md", "keys": ["SecOps fuses security with IT ops: detect, respond, recover, learn", "Different instinct from ops: adversary thinking, not just uptime thinking", "The metrics that matter: MTTD and MTTR — time to find, time to fix"]}, {"id": "4.2", "title": "SecOps zero trust architecture", "objective": "How SecOps contributes to end-to-end zero trust.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/4.2%20SecOps%20zero%20trust%20architecture.md", "keys": ["Telemetry everywhere — you cannot respond to what you never saw", "The SIEM is SecOps memory: central logs, correlated", "Assume compromise → hunt proactively; alerts are the floor, not the ceiling"]}, {"id": "4.3", "title": "SecOps capabilities", "objective": "The tooling — SIEM, XDR and beyond.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/4.3%20SecOps%20capabilities.md", "keys": ["SIEM collects, correlates, alerts; XDR extends to endpoint, identity, email", "SOAR runs the playbook — automation takes the repetitive triage", "A SOC tiers up: triage → investigation → threat hunting"]}, {"id": "4.4", "title": "End of module quiz", "objective": "Prove module 4 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/4.4%20End%20of%20module%20quiz.md"}]}, {"id": "m5", "num": 5, "title": "Application security", "blurb": "Where code meets attacker: build it right, then prove it stays right.", "lessons": [{"id": "5.1", "title": "AppSec key concepts", "objective": "Secure by design, input validation and friends.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/5.1%20AppSec%20key%20concepts.md", "keys": ["Secure by design beats patching later — security rides in the requirements", "Never trust input: validate, sanitize, encode — at every boundary", "The OWASP Top 10 is the checklist of the usual app wounds", "Least privilege applies to code too — and to its dependencies"]}, {"id": "5.2", "title": "AppSec key capabilities", "objective": "Pipeline security tools — code scanning, secret scanning and friends.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/5.2%20AppSec%20key%20capabilities.md", "keys": ["SAST reads the code · DAST attacks the running app · SCA watches dependencies", "Secret scanning: keys never belong in a repo — not even one commit", "Shift left: the pipeline is the cheapest place to find and fix"]}, {"id": "5.3", "title": "End of module quiz", "objective": "Prove module 5 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/5.3%20End%20of%20module%20quiz.md"}]}, {"id": "m6", "num": 6, "title": "Infrastructure security", "blurb": "The ground floor: hardened systems, patched holes, contained containers.", "lessons": [{"id": "6.1", "title": "Infrastructure security key concepts", "objective": "Hardening, patching, security hygiene, container security.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/6.1%20Infrastructure%20security%20key%20concepts.md", "keys": ["Hardening = removing the unnecessary — ports, services, default accounts", "Patch discipline: known unpatched CVEs remain the most common way in", "Containers inherit the host's sins — patch the base image, not just the app", "Hygiene: tested backups, least-privilege service accounts"]}, {"id": "6.2", "title": "Infrastructure security capabilities", "objective": "Tooling that assists — CSPM, container security and friends.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/6.2%20Infrastructure%20security%20capabilities.md", "keys": ["CSPM watches cloud posture against benchmarks (CIS)", "Image scanning belongs in the registry and the pipeline", "IaC scanning catches the misconfiguration before it ever deploys"]}, {"id": "6.3", "title": "End of module quiz", "objective": "Prove module 6 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/6.3%20End%20of%20module%20quiz.md"}]}, {"id": "m7", "num": 7, "title": "Data security", "blurb": "What it's all for: the data — classified, retained, watched, governed.", "lessons": [{"id": "7.1", "title": "Data security key concepts", "objective": "Classification and retention, and why they matter.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/7.1%20Data%20security%20key%20concepts.md", "keys": ["Classification drives handling — you cannot protect what you haven't labelled", "Retention: keep only what's needed; scheduled deletion is a control", "Three states, three duties: at rest, in transit, in use — encrypt accordingly"]}, {"id": "7.2", "title": "Data security capabilities", "objective": "DLP, insider risk management, data governance.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/7.2%20Data%20security%20capabilities.md", "keys": ["DLP watches and blocks the exits — email, USB, upload", "Insider risk: watch the patterns, respect privacy and the law", "Governance names owners — who holds which data, who may decide"]}, {"id": "7.3", "title": "End of module quiz", "objective": "Prove module 7 stuck.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/7.3%20End%20of%20module%20quiz.md"}]}, {"id": "m8", "num": 8, "title": "AI security", "blurb": "The new frontier: models that inherit every old risk and invent new ones.", "lessons": [{"id": "8.1", "title": "AI security key concepts", "objective": "Traditional security vs AI security — the differences and similarities.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/8.1%20AI%20security%20key%20concepts.md", "keys": ["AI inherits the old risks (access, supply chain) and adds new ones (model, prompt)", "The model is code + data — both are attack surfaces", "Adversarial inputs target behaviour, not just availability"]}, {"id": "8.2", "title": "AI security capabilities", "objective": "The tooling and controls that secure AI.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/8.2%20AI%20security%20capabilities.md", "keys": ["Content filtering + grounding tame hallucination and injection harm", "Log prompts and outputs — that's the forensic trail for AI incidents", "Red-team the model like any other boundary"]}, {"id": "8.3", "title": "Responsible AI", "objective": "What responsible AI is, and the AI-specific harms to know.", "minutes": 45, "href": "https://github.com/matx104/Security-101/blob/main/8.3%20Responsible%20AI.md", "keys": ["Fairness, privacy, transparency, accountability — design constraints, not afterthoughts", "The harms to know: bias, misuse, overreliance, sensitive-data disclosure", "Human oversight stays where the stakes are high"]}, {"id": "8.4", "title": "End of module quiz", "objective": "Prove module 8 stuck — the whole course, done.", "minutes": 10, "quiz": true, "href": "https://github.com/matx104/Security-101/blob/main/8.4%20End%20of%20module%20quiz.md"}]}]};</script>
+<script type="module">
+/* ============================================================
+   Security 101 — Study Edition. The petal renderer.
+   Content-as-data: content/modules.json in, mastery out.
+   Progress lives in localStorage, in the learner's browser
+   alone — check a lesson, it stays checked.
+   ============================================================ */
+
+const STORE_KEY = 'qalam-s101-v1';
+
+const dom = {
+  modules:  document.getElementById('modules'),
+  notice:   document.getElementById('notice'),
+  pct:      document.getElementById('progress-pct'),
+  count:    document.getElementById('progress-count'),
+  bar:      document.getElementById('progress-bar'),
+  fill:     document.getElementById('progress-fill'),
+  reset:    document.getElementById('reset')
+};
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined && text !== null) node.textContent = String(text);
+  return node;
+}
+
+function safeUrl(value) {
+  if (typeof value !== 'string' || value === '') return null;
+  try {
+    const url = new URL(value, window.location.href);
+    return (url.protocol === 'https:' || url.protocol === 'http:') ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+/* ---------- mastery, kept by the learner ---------------------------------- */
+
+function loadProgress() {
+  try {
+    const raw = JSON.parse(window.localStorage.getItem(STORE_KEY) || '{}');
+    return (raw && typeof raw === 'object') ? raw : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveProgress(done) {
+  try {
+    window.localStorage.setItem(STORE_KEY, JSON.stringify(done));
+  } catch {
+    /* private mode — progress lives for this visit only */
+  }
+}
+
+let done = loadProgress();
+
+/* ---------- rendering ------------------------------------------------------- */
+
+let openModule = null;
+let openLesson = null;
+
+function allLessons(data) {
+  return data.modules.flatMap((m) => m.lessons);
+}
+
+function renderProgress(data) {
+  const lessons = allLessons(data);
+  const total = lessons.length;
+  const complete = lessons.filter((l) => done[l.id]).length;
+  const pct = total ? Math.round((complete / total) * 100) : 0;
+
+  dom.pct.textContent = `${pct}%`;
+  dom.count.textContent = `${complete} of ${total} lessons`;
+  dom.fill.style.width = `${pct}%`;
+  dom.bar.setAttribute('aria-valuenow', String(pct));
+}
+
+function toggleLesson(id, node) {
+  openLesson = openLesson === id ? null : id;
+  for (const lesson of dom.modules.querySelectorAll('.lesson')) {
+    lesson.classList.toggle('lesson--open', lesson.dataset.lesson === openLesson);
+  }
+}
+
+function toggleModule(id) {
+  openModule = openModule === id ? null : id;
+  for (const mod of dom.modules.querySelectorAll('.mod')) {
+    mod.classList.toggle('mod--open', mod.dataset.module === openModule);
+  }
+}
+
+function render(data) {
+  dom.modules.textContent = '';
+
+  for (const mod of data.modules) {
+    const section = el('section', 'mod');
+    section.dataset.module = mod.id;
+
+    const heading = el('h2', 'mod__h');
+
+    const head = el('button', 'mod__head');
+    head.type = 'button';
+    head.setAttribute('aria-expanded', 'false');
+    head.setAttribute('aria-controls', `mod-${mod.id}`);
+    head.append(
+      el('span', 'mod__num', `Module ${mod.num}`),
+      el('span', 'mod__title', mod.title),
+      el('span', 'mod__done'),
+      el('span', 'mod__chev', '▾')
+    );
+    head.addEventListener('click', () => toggleModule(mod.id));
+
+    const body = el('div', 'mod__body');
+    body.id = `mod-${mod.id}`;
+    body.setAttribute('role', 'region');
+    body.setAttribute('aria-labelledby', `mod-h-${mod.id}`);
+
+    const scroller = el('div', 'mod__scroller');
+    scroller.append(el('p', 'mod__blurb', mod.blurb || ''));
+
+    for (const lesson of mod.lessons) {
+      scroller.append(buildLesson(lesson));
+    }
+
+    body.append(scroller);
+    heading.append(head);
+    section.append(heading, body);
+    dom.modules.append(section);
+  }
+
+  refresh(data);
+}
+
+function buildLesson(lesson) {
+  const isDone = Boolean(done[lesson.id]);
+  const node = el('article', 'lesson' +
+    (isDone ? ' lesson--done' : '') +
+    (lesson.quiz ? ' lesson--quiz' : ''));
+  node.dataset.lesson = lesson.id;
+
+  const row = el('button', 'lesson__row');
+  row.type = 'button';
+  row.setAttribute('aria-expanded', 'false');
+
+  const check = el('span', 'lesson__check', '✓');
+  check.setAttribute('aria-hidden', 'true');
+
+  row.append(
+    check,
+    el('span', 'lesson__id', lesson.id),
+    el('span', 'lesson__name', lesson.title),
+    el('span', 'lesson__mins', lesson.quiz ? 'quiz' : `~${lesson.minutes || 30} min`),
+    el('span', 'lesson__chev', '▸')
+  );
+  row.addEventListener('click', () => toggleLesson(lesson.id, node));
+
+  /* the check itself is its own target: mark without opening */
+  const checkButton = el('button', 'lesson__mark');
+  checkButton.type = 'button';
+  checkButton.className = 'sr-toggle';
+  checkButton.setAttribute('aria-pressed', String(isDone));
+  checkButton.setAttribute('aria-label',
+    `Mark “${lesson.title}” as ${isDone ? 'not done' : 'done'}`);
+  checkButton.style.cssText =
+    'position:absolute;left:1rem;margin-top:0.55rem;width:1.5rem;height:1.5rem;' +
+    'opacity:0;cursor:pointer;';
+  checkButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (done[lesson.id]) delete done[lesson.id];
+    else done[lesson.id] = true;
+    saveProgress(done);
+    node.classList.toggle('lesson--done', Boolean(done[lesson.id]));
+    checkButton.setAttribute('aria-pressed', String(Boolean(done[lesson.id])));
+    checkButton.setAttribute('aria-label',
+      `Mark “${lesson.title}” as ${done[lesson.id] ? 'not done' : 'done'}`);
+    refresh(APP_DATA);
+  });
+  row.style.position = 'relative';
+  row.append(checkButton);
+
+  const detail = el('div', 'lesson__detail');
+  const inner = el('div', 'lesson__inner');
+  const pad = el('div', 'lesson__pad');
+
+  if (lesson.objective) pad.append(el('p', 'lesson__objective', lesson.objective));
+
+  if (Array.isArray(lesson.keys) && lesson.keys.length) {
+    const keys = el('ul', 'keys');
+    for (const key of lesson.keys) keys.append(el('li', null, key));
+    pad.append(keys);
+  }
+
+  const href = safeUrl(lesson.href);
+  if (href) {
+    const read = el('a', 'lesson__read');
+    read.href = href;
+    read.target = '_blank';
+    read.rel = 'noopener noreferrer';
+    read.append(el('span', null, lesson.quiz ? 'Take the quiz' : 'Read the full lesson'), el('span', null, ' ↗'));
+    pad.append(read);
+  }
+
+  inner.append(pad);
+  detail.append(inner);
+  node.append(row, detail);
+  return node;
+}
+
+/* module counts + the master bar, after any change */
+let APP_DATA = null;
+
+function refresh(data) {
+  if (!data) return;
+  renderProgress(data);
+
+  for (const mod of dom.modules.querySelectorAll('.mod')) {
+    const lessons = data.modules.find((m) => m.id === mod.dataset.module).lessons;
+    const complete = lessons.filter((l) => done[l.id]).length;
+    const label = mod.querySelector('.mod__done');
+    label.textContent = '';
+    label.append(
+      document.createTextNode(''),
+      (() => { const b = el('b', null, complete); return b; })(),
+      document.createTextNode(`/${lessons.length}`)
+    );
+  }
+}
+
+/* ---------- boot ---------------------------------------------------------------- */
+
+async function boot() {
+  if (dom.reset) {
+    dom.reset.addEventListener('click', () => {
+      done = {};
+      saveProgress(done);
+      render(APP_DATA);
+    });
+  }
+
+  try {
+    if (window.__MODULES__ && typeof window.__MODULES__ === 'object') {
+      APP_DATA = window.__MODULES__;
+    } else {
+      const res = await fetch('content/modules.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      APP_DATA = await res.json();
+    }
+    render(APP_DATA);
+    if (openModule) toggleModule(openModule);
+  } catch (error) {
+    console.error('Security 101: could not load modules —', error);
+    dom.notice.textContent =
+      `The modules could not be loaded from content/modules.json: ${error.message}. ` +
+      'The original curriculum remains readable in the fork.';
+    dom.notice.hidden = false;
+  }
+}
+
+boot();
+
+</script>
+<noscript>
+  <p class="notice">This study edition renders from <code>content/modules.json</code> and needs JavaScript.
+  The original lessons remain readable in the fork, link above.</p>
+</noscript>
+
+</body>
+</html>
