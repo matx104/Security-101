@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security 101 — Study Edition · QALAM</title>
+<meta name="description" content="Microsoft's Cybersecurity for Beginners, digested and free: eight modules, thirty lessons, mastery tracking. Knowledge shared is knowledge multiplied.">
+<meta name="theme-color" content="#0B0F0E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QALAM — القلم">
+<meta property="og:title" content="Security 101 — Study Edition">
+<meta property="og:description" content="Microsoft's Cybersecurity for Beginners, recovered by QALAM: digested, tracked, free forever.">
+<meta property="og:url" content="https://matx104.github.io/Security-101/">
+<meta property="og:image" content="https://matx104.github.io/Security-101/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security 101 — Study Edition">
+<meta name="twitter:description" content="Microsoft's Cybersecurity for Beginners, recovered by QALAM — free forever.">
+<meta name="twitter:image" content="https://matx104.github.io/Security-101/img/og.png">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css?v=1">
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero__eyebrow">QALAM presents · a digested study edition</p>
+  <h1 class="hero__title">Security 101</h1>
+  <p class="hero__sub">Microsoft's <em>Cybersecurity for Beginners</em> — recovered, compressed, free.</p>
+
+  <div class="progress" id="progress">
+    <p class="progress__label"><strong id="progress-pct">0%</strong> inscribed · <span id="progress-count">0 of 32 lessons</span></p>
+    <div class="progress__bar" role="progressbar" aria-labelledby="progress-pct" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+      <div class="progress__fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <nav class="hero__meta" aria-label="About this edition">
+    <a href="https://github.com/microsoft/Security-101" target="_blank" rel="noopener noreferrer">🏛️ original by Microsoft (MIT)</a>
+    <a href="https://github.com/matx104/Security-101" target="_blank" rel="noopener noreferrer">🍴 this fork</a>
+    <a href="https://matx104.github.io/QALAM/" target="_blank" rel="noopener noreferrer">🖊️ the QALAM tree</a>
+  </nav>
+</header>
+
+<main>
+  <p class="creed">A scroll recovered from the library: the original curriculum belongs to Microsoft and stays
+  linked lesson-by-lesson; the digests and keys below are QALAM's study layer — what to carry into the room.
+  Your progress is stored in <em>your</em> browser, nowhere else.</p>
+
+  <div id="modules" class="modules"></div>
+  <p class="notice" id="notice" hidden></p>
+
+  <section class="after">
+    <h2>After the course</h2>
+    <p>
+      Microsoft's own next steps: the
+      <a href="https://learn.microsoft.com/training/paths/describe-concepts-of-security-compliance-identity/" target="_blank" rel="noopener noreferrer">Security, Compliance &amp; Identity Fundamentals</a>
+      path on Microsoft Learn, and eventually
+      <a href="https://learn.microsoft.com/credentials/certifications/exams/sc-900/" target="_blank" rel="noopener noreferrer">Exam SC-900</a>.
+    </p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot__motto"><strong>Security 101 — Study Edition</strong> · a petal of <a href="https://matx104.github.io/QALAM/" target="_blank" rel="noopener noreferrer">QALAM</a></p>
+  <p class="foot__sub">Curriculum © Microsoft · MIT License · digested with credit, shared free.<br>
+  Knowledge shared is knowledge multiplied.</p>
+  <p class="foot__links"><button type="button" class="reset" id="reset">Reset my progress</button></p>
+</footer>
+
+<script type="module" src="js/app.js?v=1"></script>
+<noscript>
+  <p class="notice">This study edition renders from <code>content/modules.json</code> and needs JavaScript.
+  The original lessons remain readable in the fork, link above.</p>
+</noscript>
+
+</body>
+</html>

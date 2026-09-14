@@ -1,0 +1,435 @@
+{
+  "_comment": "The Security 101 study edition — Microsoft's 'Cybersecurity for Beginners' (Security-101) digested for study. Original curriculum (c) Microsoft, MIT License, github.com/microsoft/Security-101. Keys are QALAM-authored study points: the compressed layer, the mnemonics, the things worth carrying into the exam room. Lesson links point into the QALAM fork.",
+  "_updated": "2026-09-14",
+  "modules": [
+    {
+      "id": "m1",
+      "num": 1,
+      "title": "Basic security concepts",
+      "blurb": "The vocabulary everything else is written in: the triad, the threats, the risk, the paperwork, and the two models that re-drew the map.",
+      "lessons": [
+        {
+          "id": "1.1",
+          "title": "The CIA triad and other key concepts",
+          "objective": "Confidentiality, availability and integrity — plus authenticity, nonrepudiation and privacy.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.1%20The%20CIA%20triad%20and%20other%20key%20concepts.md",
+          "keys": [
+            "Confidentiality — only authorized eyes see it; broken by disclosure: leaks, eavesdropping, misdirected access",
+            "Integrity — data stays correct and unaltered; broken by tampering, in transit or at rest",
+            "Availability — the right people can use it when they need it; broken by outage, DoS, destruction",
+            "Authenticity + nonrepudiation — claims are true and can't credibly be denied later",
+            "Privacy spans all three — the data subject keeps control of their own information"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Common cybersecurity threats",
+          "objective": "The threat landscape facing individuals and organizations.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.2%20Common%20cybersecurity%20threats.md",
+          "keys": [
+            "Threat = potential harm · vulnerability = the weakness · exploit = the tool that joins them",
+            "Malware families: virus (attaches), worm (self-spreads), ransomware (denies + extorts), spyware (watches)",
+            "Social engineering beats firewalls — phishing, spear-phishing, business email compromise target people",
+            "Insider threat needs no exploit: authorized access, unauthorized intent",
+            "Attack surface = every point a threat can touch — people, process and technology"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Understanding risk management",
+          "objective": "Assessing risk — impact and likelihood — and implementing controls.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.3%20Understanding%20risk%20management.md",
+          "keys": [
+            "Risk = likelihood × impact — it is managed, never eliminated",
+            "Four responses: avoid, mitigate (controls), transfer (insurance/provider), accept (documented!)",
+            "Controls: physical / technical / administrative — and preventive / detective / corrective",
+            "The risk register is a living document — unreviewed risk data is fiction"
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Security practices and documentation",
+          "objective": "The difference between policies, procedures, standards and regulations.",
+          "minutes": 30,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.4%20Security%20practices%20and%20documentation.md",
+          "keys": [
+            "Policy = intent (what and why) · standard = the mandatory specific · procedure = the step-by-step how",
+            "Regulations and law are external and non-negotiable; policy is yours to write",
+            "Documentation is itself a control — unwritten security is unauditable security"
+          ]
+        },
+        {
+          "id": "1.5",
+          "title": "Zero trust",
+          "objective": "What zero trust is, defense in depth, and the architecture it forces.",
+          "minutes": 60,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.5%20Zero%20trust.md",
+          "keys": [
+            "Never trust, always verify — network location grants nothing",
+            "Assume breach — design as if the attacker is already inside",
+            "Defense in depth — layered controls so one failure is never the whole story",
+            "Every request answers: who/what is asking, for which data, under which conditions"
+          ]
+        },
+        {
+          "id": "1.6",
+          "title": "The shared responsibility model",
+          "objective": "Who secures what in the cloud — and why the boundary moves.",
+          "minutes": 30,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.6%20Shared%20responsibility%20model.md",
+          "keys": [
+            "Provider secures the fabric (the cloud); you secure what you put on it (in the cloud)",
+            "On-prem = you own everything · SaaS = mostly provider · IaaS/PaaS = split",
+            "The split is documented by the provider — read it before you assume it"
+          ]
+        },
+        {
+          "id": "1.7",
+          "title": "End of module quiz",
+          "objective": "Prove module 1 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/1.7%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "num": 2,
+      "title": "Identity & access management",
+      "blurb": "The new perimeter: who you are, what you may do, and how little access is enough.",
+      "lessons": [
+        {
+          "id": "2.1",
+          "title": "IAM key concepts",
+          "objective": "Least privilege, segregation of duties, and how IAM supports zero trust.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/2.1%20IAM%20key%20concepts.md",
+          "keys": [
+            "The four steps: identify (claim) → authenticate (prove) → authorize (allow) → account (log)",
+            "Least privilege: minimum access, for the minimum time",
+            "Segregation of duties — no single person completes a critical flow alone",
+            "AAA is the spine: authentication, authorization, accounting"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "IAM zero trust architecture",
+          "objective": "Identity as the new perimeter, and the threats that mitigates.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/2.2%20IAM%20zero%20trust%20architecture.md",
+          "keys": [
+            "Identity is the new perimeter — the network edge no longer decides access",
+            "Strong auth: MFA everywhere; passwordless where possible",
+            "Conditional access weighs signals per request — device, location, risk",
+            "What it neutralizes: credential theft, lateral movement, privilege creep"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "IAM capabilities",
+          "objective": "The capabilities and controls that secure identities.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/2.3%20IAM%20capabilities.md",
+          "keys": [
+            "One directory / identity provider is the source of truth (Entra ID and friends)",
+            "SSO = one identity, many apps; federation extends trust across organizations",
+            "Privileged access: just-in-time, approved, logged, revoked",
+            "Lifecycle automation (joiner-mover-leaver) kills orphan accounts"
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "End of module quiz",
+          "objective": "Prove module 2 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/2.4%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "num": 3,
+      "title": "Network security",
+      "blurb": "The roads the data travels — and the checkpoints zero trust puts on them.",
+      "lessons": [
+        {
+          "id": "3.1",
+          "title": "Networking key concepts",
+          "objective": "IP addressing, port numbers, encryption and friends.",
+          "minutes": 60,
+          "href": "https://github.com/matx104/Security-101/blob/main/3.1%20Networking%20key%20concepts.md",
+          "keys": [
+            "IP address = where; port = which door — know the famous ones (80/443, 22, 53)",
+            "TCP guarantees delivery, UDP prefers speed — services pick their poison",
+            "TLS protects the conversation in transit — not the endpoints themselves",
+            "DNS, DHCP, NAT — the plumbing, and the plumbing attackers also love"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Networking zero trust architecture",
+          "objective": "Networking's role in end-to-end zero trust.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/3.2%20Networking%20zero%20trust%20architecture.md",
+          "keys": [
+            "Micro-segmentation — tiny blast radii, explicitly allowed flows only",
+            "The network sits inside identity now: per-request access, not per-subnet",
+            "Encrypt east-west too — internal traffic is not 'safe' by location"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Network security capabilities",
+          "objective": "The tooling — firewalls, WAF, DDoS protection and the rest.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/3.3%20Network%20security%20capabilities.md",
+          "keys": [
+            "Firewall filters L3/L4; WAF defends L7 — the app attacks: SQLi, XSS",
+            "DDoS protection absorbs volume — CDN edges and scrubbing centers",
+            "IDS notices, IPS acts; modern NDR watches behaviour, not signatures",
+            "A VPN grants access, not safety — zero trust retires the implicit tunnel"
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "End of module quiz",
+          "objective": "Prove module 3 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/3.4%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "num": 4,
+      "title": "Security operations",
+      "blurb": "The defenders' shift: detect, respond, recover — and hunt instead of wait.",
+      "lessons": [
+        {
+          "id": "4.1",
+          "title": "SecOps key concepts",
+          "objective": "Why SecOps exists, and how it differs from IT operations.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/4.1%20SecOps%20key%20concepts.md",
+          "keys": [
+            "SecOps fuses security with IT ops: detect, respond, recover, learn",
+            "Different instinct from ops: adversary thinking, not just uptime thinking",
+            "The metrics that matter: MTTD and MTTR — time to find, time to fix"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "SecOps zero trust architecture",
+          "objective": "How SecOps contributes to end-to-end zero trust.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/4.2%20SecOps%20zero%20trust%20architecture.md",
+          "keys": [
+            "Telemetry everywhere — you cannot respond to what you never saw",
+            "The SIEM is SecOps memory: central logs, correlated",
+            "Assume compromise → hunt proactively; alerts are the floor, not the ceiling"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "SecOps capabilities",
+          "objective": "The tooling — SIEM, XDR and beyond.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/4.3%20SecOps%20capabilities.md",
+          "keys": [
+            "SIEM collects, correlates, alerts; XDR extends to endpoint, identity, email",
+            "SOAR runs the playbook — automation takes the repetitive triage",
+            "A SOC tiers up: triage → investigation → threat hunting"
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "End of module quiz",
+          "objective": "Prove module 4 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/4.4%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "num": 5,
+      "title": "Application security",
+      "blurb": "Where code meets attacker: build it right, then prove it stays right.",
+      "lessons": [
+        {
+          "id": "5.1",
+          "title": "AppSec key concepts",
+          "objective": "Secure by design, input validation and friends.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/5.1%20AppSec%20key%20concepts.md",
+          "keys": [
+            "Secure by design beats patching later — security rides in the requirements",
+            "Never trust input: validate, sanitize, encode — at every boundary",
+            "The OWASP Top 10 is the checklist of the usual app wounds",
+            "Least privilege applies to code too — and to its dependencies"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "AppSec key capabilities",
+          "objective": "Pipeline security tools — code scanning, secret scanning and friends.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/5.2%20AppSec%20key%20capabilities.md",
+          "keys": [
+            "SAST reads the code · DAST attacks the running app · SCA watches dependencies",
+            "Secret scanning: keys never belong in a repo — not even one commit",
+            "Shift left: the pipeline is the cheapest place to find and fix"
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "End of module quiz",
+          "objective": "Prove module 5 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/5.3%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m6",
+      "num": 6,
+      "title": "Infrastructure security",
+      "blurb": "The ground floor: hardened systems, patched holes, contained containers.",
+      "lessons": [
+        {
+          "id": "6.1",
+          "title": "Infrastructure security key concepts",
+          "objective": "Hardening, patching, security hygiene, container security.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/6.1%20Infrastructure%20security%20key%20concepts.md",
+          "keys": [
+            "Hardening = removing the unnecessary — ports, services, default accounts",
+            "Patch discipline: known unpatched CVEs remain the most common way in",
+            "Containers inherit the host's sins — patch the base image, not just the app",
+            "Hygiene: tested backups, least-privilege service accounts"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Infrastructure security capabilities",
+          "objective": "Tooling that assists — CSPM, container security and friends.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/6.2%20Infrastructure%20security%20capabilities.md",
+          "keys": [
+            "CSPM watches cloud posture against benchmarks (CIS)",
+            "Image scanning belongs in the registry and the pipeline",
+            "IaC scanning catches the misconfiguration before it ever deploys"
+          ]
+        },
+        {
+          "id": "6.3",
+          "title": "End of module quiz",
+          "objective": "Prove module 6 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/6.3%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m7",
+      "num": 7,
+      "title": "Data security",
+      "blurb": "What it's all for: the data — classified, retained, watched, governed.",
+      "lessons": [
+        {
+          "id": "7.1",
+          "title": "Data security key concepts",
+          "objective": "Classification and retention, and why they matter.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/7.1%20Data%20security%20key%20concepts.md",
+          "keys": [
+            "Classification drives handling — you cannot protect what you haven't labelled",
+            "Retention: keep only what's needed; scheduled deletion is a control",
+            "Three states, three duties: at rest, in transit, in use — encrypt accordingly"
+          ]
+        },
+        {
+          "id": "7.2",
+          "title": "Data security capabilities",
+          "objective": "DLP, insider risk management, data governance.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/7.2%20Data%20security%20capabilities.md",
+          "keys": [
+            "DLP watches and blocks the exits — email, USB, upload",
+            "Insider risk: watch the patterns, respect privacy and the law",
+            "Governance names owners — who holds which data, who may decide"
+          ]
+        },
+        {
+          "id": "7.3",
+          "title": "End of module quiz",
+          "objective": "Prove module 7 stuck.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/7.3%20End%20of%20module%20quiz.md"
+        }
+      ]
+    },
+    {
+      "id": "m8",
+      "num": 8,
+      "title": "AI security",
+      "blurb": "The new frontier: models that inherit every old risk and invent new ones.",
+      "lessons": [
+        {
+          "id": "8.1",
+          "title": "AI security key concepts",
+          "objective": "Traditional security vs AI security — the differences and similarities.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/8.1%20AI%20security%20key%20concepts.md",
+          "keys": [
+            "AI inherits the old risks (access, supply chain) and adds new ones (model, prompt)",
+            "The model is code + data — both are attack surfaces",
+            "Adversarial inputs target behaviour, not just availability"
+          ]
+        },
+        {
+          "id": "8.2",
+          "title": "AI security capabilities",
+          "objective": "The tooling and controls that secure AI.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/8.2%20AI%20security%20capabilities.md",
+          "keys": [
+            "Content filtering + grounding tame hallucination and injection harm",
+            "Log prompts and outputs — that's the forensic trail for AI incidents",
+            "Red-team the model like any other boundary"
+          ]
+        },
+        {
+          "id": "8.3",
+          "title": "Responsible AI",
+          "objective": "What responsible AI is, and the AI-specific harms to know.",
+          "minutes": 45,
+          "href": "https://github.com/matx104/Security-101/blob/main/8.3%20Responsible%20AI.md",
+          "keys": [
+            "Fairness, privacy, transparency, accountability — design constraints, not afterthoughts",
+            "The harms to know: bias, misuse, overreliance, sensitive-data disclosure",
+            "Human oversight stays where the stakes are high"
+          ]
+        },
+        {
+          "id": "8.4",
+          "title": "End of module quiz",
+          "objective": "Prove module 8 stuck — the whole course, done.",
+          "minutes": 10,
+          "quiz": true,
+          "href": "https://github.com/matx104/Security-101/blob/main/8.4%20End%20of%20module%20quiz.md"
+        }
+      ]
+    }
+  ]
+}
